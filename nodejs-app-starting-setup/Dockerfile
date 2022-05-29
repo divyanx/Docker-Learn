@@ -2,10 +2,12 @@ FROM node
 
 WORKDIR /app
 
+COPY package.json /app
+# doing this will not run npm install each time we change our source code
+RUN npm install
+
 COPY . /app
 # or COPY . ./  as current workdir is set to /app
-
-RUN npm install
 
 EXPOSE 80 
 # docker ports are internal to the container so we need to expose them to access from outside
